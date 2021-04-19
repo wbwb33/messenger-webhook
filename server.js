@@ -1,6 +1,8 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const { bottender } = require('bottender');
+const messagesRouter = require('./src/routes/messages');
+require('./src/db_manager/config');
 
 const app = bottender({
   dev: process.env.NODE_ENV !== 'production',
@@ -20,6 +22,8 @@ app.prepare().then(() => {
   };
   server.use(bodyParser.json({ verify }));
   server.use(bodyParser.urlencoded({ extended: false, verify }));
+
+  server.use('/messages', messagesRouter);
 
   // your custom route
   server.get('/api', (req, res) => {
