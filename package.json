@@ -7,7 +7,7 @@
     "lint": "eslint . ",
     "start": "bottender start",
     "test": "jest",
-    "ngrok": "ngrok http 4040"
+    "ngrok": "ngrok http 4040 > /dev/null &"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
