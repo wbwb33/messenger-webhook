@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bottender dev",
+    "dev": "nodemon server.js",
     "lint": "eslint . ",
     "start": "bottender start",
-    "test": "jest"
+    "test": "jest",
+    "ngrok": "ngrok http 4040"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bottender": "1.5.1-alpha.9",
-    "moment": "^2.29.1"
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
     "eslint": "^7.24.0",
