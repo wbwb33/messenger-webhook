@@ -2,6 +2,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const { bottender } = require('bottender');
 const messagesRouter = require('./src/routes/messages');
+const ngrok = require('ngrok');
+
 require('./src/db_manager/config');
 
 const app = bottender({
@@ -39,4 +41,13 @@ app.prepare().then(() => {
     if (err) throw err;
     console.log(`Ready on http://localhost:${port}`);
   });
+}).then(async() => {
+  if(process.env.NODE_ENV === 'development'){
+    await ngrok.connect({
+      proto: 'http',
+      port: port
+    }).then((tunnelUrl) => {
+      console.log(`Webhook available on ${tunnelUrl}`);
+    });
+  }
 });
