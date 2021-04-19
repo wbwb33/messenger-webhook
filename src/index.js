@@ -1,15 +1,19 @@
 const moment = require('moment');
+const service = require('./db_manager/service_internal');
 
 module.exports = async function App(context) {
   let output;
 
   if (context.event.isText) {
     const input = context.event.text;
+    const uniqueId = context._session.id;
+    service.create(input,uniqueId);
+
     let state = context.state;
     
     if (state.asking == "counter-till-birthday") {
       let yesSynonim = ["yes","yeah","sure","ok","yep"];
-      if(yesSynonim.some(input.includes.bind(input.toLowerCase()))) {
+      if(yesSynonim.some(w => input.toLowerCase().includes(w))) {
         const dateNow = moment();
         const yearNow = dateNow.year();
         const dateWithYearNow = moment(state.birthday).year(yearNow);
