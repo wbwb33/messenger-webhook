@@ -26,7 +26,6 @@ module.exports = {
       },
     },
   },
-  initialState: {},
   channels: {
     messenger: {
       enabled: true,

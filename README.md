@@ -61,20 +61,12 @@ To run in [Console Mode](https://bottender.js.org/docs/en/the-basics-console-mod
 
 ```sh
 npm run dev -- --console
-yarn dev --console
 ```
 
 ### `npm start`
 
 Runs the app in production mode.<br>
 By default, server runs on [http://localhost:5000](http://localhost:5000).
-
-To run in [Console Mode](https://bottender.js.org/docs/en/the-basics-console-mode), provide the `--console` option:
-
-```sh
-npm start -- --console
-yarn start --console
-```
 
 ### `npm run lint`
 
