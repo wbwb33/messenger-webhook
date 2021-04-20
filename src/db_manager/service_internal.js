@@ -1,5 +1,6 @@
 const db = require('./config');
 
+/** Create operation */
 const create = (message, user) => {
   db.serialize(() => {
     db.run('INSERT INTO msg(messages,users) VALUES(?,?)', [message, user], function (err) {

@@ -2,7 +2,6 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const { bottender } = require('bottender');
 const messagesRouter = require('./routes/messages');
-
 require('./db_manager/config');
 
 const app = bottender({
@@ -12,7 +11,7 @@ const app = bottender({
 
 const port = Number(process.env.PORT) || 5000;
 
-// the request handler of the bottender app
+/** the request handler of the bottender app */ 
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
@@ -24,14 +23,10 @@ app.prepare().then(() => {
   server.use(bodyParser.json({ verify }));
   server.use(bodyParser.urlencoded({ extended: false, verify }));
 
+  /** route for /messages path */
   server.use('/messages', messagesRouter);
 
-  // your custom route
-  server.get('/api', (req, res) => {
-    res.json({ ok: true });
-  });
-
-  // route for webhook request
+  /** route for webhook hanler */
   server.all('*', (req, res) => {
     return handle(req, res);
   });

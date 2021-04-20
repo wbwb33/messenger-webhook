@@ -1,5 +1,6 @@
 const db = require('./config');
 
+/** create operation */
 const create = (req, res) => {
   db.serialize(() => {
     db.run('INSERT INTO msg(messages,users) VALUES(?,?)', [req.body.message, req.body.user], function (err) {
@@ -12,6 +13,7 @@ const create = (req, res) => {
   });
 };
 
+/** Read One operation */
 const readOne = (req,res) => {
   db.serialize(()=>{
     db.each('SELECT id, messages message, users user FROM msg WHERE id =?', [req.params.id], function(err,row){     
@@ -24,6 +26,7 @@ const readOne = (req,res) => {
   });
 };
 
+/** Read All operation */
 const readAll = (req,res) => {
   db.serialize(()=>{
     db.all('SELECT id, messages, users FROM msg', [], function(err,rows){  
@@ -36,6 +39,7 @@ const readAll = (req,res) => {
   });
 };
 
+/** Delete One operation */
 const deleteOne = (req,res) => {
   db.serialize(()=>{
     db.run('DELETE FROM msg WHERE id = ?', req.params.id, function(err) {

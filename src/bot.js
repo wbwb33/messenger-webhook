@@ -11,6 +11,7 @@ module.exports = async function App(context) {
 
     let state = context.state;
     
+    /** final state */
     if (state.asking == "counter-till-birthday") {
       let yesSynonim = ["yes","yeah","sure","ok","yep"];
       if(yesSynonim.some(w => input.toLowerCase().includes(w))) {
@@ -27,6 +28,7 @@ module.exports = async function App(context) {
       }
       state.asking = null;
 
+    /** state asking counter until user's birthday */
     } else if (state.asking == "birthday") {
       const isValid = input.match(/^\d{4}([-])\d{2}\1\d{2}$/);
       if(isValid) {
@@ -36,10 +38,14 @@ module.exports = async function App(context) {
       } else {
         output = "I'm sorry, i can't find your birthday. Please, kindly use this format, YYYY-MM-DD.";
       }
+
+    /** state asking birthday */
     } else if (state.asking == "name") {
       state.firstName = input;
       state.asking = "birthday";
       output = `Hello ${input}. When is your birthday?`;
+
+    /** state asking name */
     } else {
       context.resetState();
       state = { asking: "name" };
@@ -47,8 +53,9 @@ module.exports = async function App(context) {
     }
 
     await context.setState(state);
+
   } else {
-    output = `Uh oh, sorry i can't understand input other than words. Please use words only to communicate with me.`;
+    output = `Uh oh, sorry i can't understand input other than words. Please use words only to chat with me.`;
   }
 
   await context.sendText(output);
