@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "devbottender": "bottender dev",
-    "dev": "nodemon server.js",
+    "dev": "node -r dotenv/config ./src/bin/dev",
     "lint": "eslint . ",
     "start": "bottender start",
-    "test": "jest",
-    "ngrok": "ngrok http 4040"
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -16,7 +15,8 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "nodemon": "^2.0.7",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "supertest": "^6.1.3"
   },
   "devDependencies": {
     "eslint": "^7.24.0",
