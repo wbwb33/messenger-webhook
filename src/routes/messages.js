@@ -2,6 +2,11 @@ const express = require('express');
 const service = require('../db_manager/service_external');
 const router = express.Router();
 
+/* POST new messages */
+router.post('/', (req, res, next) => {
+  service.create(req,res);
+});
+
 /* DELETE message by Id */
 router.delete('/:id', (req, res, next) => {
   service.deleteOne(req,res);
