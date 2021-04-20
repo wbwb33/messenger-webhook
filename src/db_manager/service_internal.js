@@ -6,8 +6,6 @@ const create = (message, user) => {
       if (err) {
         return console.error(err.message);
       }
-      console.log("New messages has been added into the database with user = " + user + " and Message = " + message);
-      return ("New messages has been added into the database with user = " + user + " and Message = " + message);
     });
   });
 };
