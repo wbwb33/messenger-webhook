@@ -1,4 +1,10 @@
 module.exports = {
+  initialState: {
+    firstName: null,
+    asking: null,
+    birthday: null,
+    counter: null
+  },
   session: {
     driver: 'file',
     stores: {
@@ -20,7 +26,6 @@ module.exports = {
       },
     },
   },
-  initialState: {},
   channels: {
     messenger: {
       enabled: true,
